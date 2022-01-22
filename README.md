@@ -28,23 +28,6 @@ set breakpoint pending on
 ```
 to the configuration file ~/.gdbinit in home directory.
 
-Another solution is to use a simple wrapper to call any debugger instead of TotalView. Let's create the bash script named totalview (in directory added to PATH variable) to run e.g. gdb instead of TotalView and pass arguments to gdb in a proper way:
-```
-$ ls -l /usr/local/bin/totalview
-
--rwxr-xr-x 1 root root 88 01-01 01:01 /usr/local/bin/totalview
-
-
-$ cat /usr/local/bin/totalview
-
-#!/bin/bash
-
-SWITCH='--args'
-
-/usr/bin/gdb $SWITCH $1 "${@:3}"
-```
- This method doesn't require non-default settings in ~/.gdbinit.
-
 To debug a subroutine, it must be compiled with -g argument to produce debugging information. In the case of GDB you can use -ggdb to produce debugging information for use by GDB specifically. It can be done by modifying Abaqus environment variable compile_fortran in Abaqus environment file: 
 ```
 $ cat abaqus_v6.env
@@ -54,37 +37,13 @@ compile_fortran=compile_fortran + ['-ggdb']
 ```
 Please note that for debugging all code optimization options should be removed as well. If the set of arguments for Intel compilers specific for Abaqus is used, then the best option is to copy the complete definition of environment variable compile_fortran (from lnx86_64.env file) into the local Abaqus environment file, and remove all optimization options.
 
-To run Abaqus in gdb using -db gdb option us the following command:
+To run Abaqus in gdb use the following command:
 ```
 $ abaqus debug -standard [or -explicit] -db gdb -j job_name -user user.f -stop subroutine_name -int
 …
 Breakpoint 1, subroutine_name (…) at user.f:line_nb
 
 (gdb)
-```
-To run Abaqus in gdb via wrapper use the following command:
-```
-$ abaqus debug -standard [or -explicit] -j job_name -user user.f -int
-…
-(gdb)
-```
-Now the breakpoints at a user subroutine can be defined (please note the underscore at the end of name):
-```
-(gdb) break subroutine_name_
-
-Function "subroutine_name_" not defined.
-
-Make breakpoint pending on future shared library load? (y or [n])y
-
-Breakpoint 1 (subroutine_name_) pending.
-```
-and Abaqus job can be run:
-```
-(gdb) run
-
-…
-
-Breakpoint 1, subroutine_name (…) at user.f:line_nb
 ```
 When the execution is stopped, user subroutine debugging can be started.
 
