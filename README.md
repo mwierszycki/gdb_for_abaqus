@@ -20,13 +20,13 @@ First problem is that the arguments required by Abaqus to run a job are not pass
 ```
 set auto-load safe-path /
 ```
- to the gdb configuration file ~/[.gdbinit] in home directory.
+ to the gdb configuration file ~/[.gdbinit](.gdbinit) in home directory.
 
 Second problem is setting a breakpoint at the subroutine name. It's done when the subroutine is not loaded yet in gdb. Default setting of gdb in that case is to skip breakpoint definition at all. The change it add line:
 ```
 set breakpoint pending on
 ```
-to the configuration file ~/[.gdbinit] in home directory.
+to the configuration file ~/[.gdbinit](.gdbinit) in home directory.
 
 To debug a subroutine, it must be compiled with -g argument to produce debugging information. In the case of GDB you can use -ggdb to produce debugging information for use by GDB specifically. It can be done by modifying Abaqus environment variable compile_fortran in Abaqus environment file: 
 ```
