@@ -22,7 +22,7 @@ set auto-load safe-path /
 ```
  to the gdb configuration file ~/[.gdbinit](.gdbinit) in home directory.
 
-Second problem is setting a breakpoint at the subroutine name. It's done when the subroutine is not loaded yet in gdb. Default setting of gdb in that case is to skip breakpoint definition at all. The change it add line:
+Second problem is setting a breakpoint at the subroutine name. It's done when the subroutine is not loaded yet in gdb. Default setting of gdb in that case is to skip breakpoint definition at all. To change it add line:
 ```
 set breakpoint pending on
 ```
