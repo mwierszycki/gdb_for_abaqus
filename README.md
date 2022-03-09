@@ -83,11 +83,7 @@ Simplicity of use with the command line should not obscure how powerful gdb real
 ```
 This command prints the values contained in the Fortran COMMON block, whose name is common-name. With no argument, the names of all COMMON blocks visible at the current program location are printed.
 
-More about GDB can be found in the [documentation](https://www.sourceware.org/gdb/documentation/) and tons of [tutorials](https://www.google.com/search?q=gdb+tutorial) on the Internet. You can try also a bit more graphical UI with:
-```
-$ gdb --tui
-```
-or [cgdb](https://cgdb.github.io/).
+More about GDB can be found in the [documentation](https://www.sourceware.org/gdb/documentation/) and tons of [tutorials](https://www.google.com/search?q=gdb+tutorial) on the Internet.
 
 Happy debugging!
 
